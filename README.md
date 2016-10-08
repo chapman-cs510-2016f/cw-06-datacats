@@ -1,8 +1,8 @@
 # CS510 CW 6
 
-**Author(s):** _\<your name(s)\>_
+**Author(s):** _Simrath Ratra, Andrew Nguyen_
 
-[![Build Status](https://travis-ci.org/chapman-cs510-2016f/cw-06-YOURNAME.svg?branch=master)](https://travis-ci.org/chapman-cs510-2016f/cw-06-YOURNAME)
+[![Build Status](https://travis-ci.org/chapman-cs510-2016f/cw-06-datacats.svg?branch=master)](https://travis-ci.org/chapman-cs510-2016f/cw-06-datacats)
 
 **Due date:** 2016/10/11
 
@@ -43,4 +43,4 @@ I pledge that all the work in this repository is my own with only the following 
 
 Signed,
 
-**YOURNAME**
+**Simrath Ratra, Andrew Nguyen**
