@@ -10,9 +10,10 @@ def julia(c, max=100):
             z = z**2 + c
             n += 1
             if n == max:
-                return 0
-            elif abs(z) > 2:
-                print("test")
                 test = False
+                n = 0
+            elif abs(z) > 2:
+                test = False
+        print(n)
         return n
     return f
