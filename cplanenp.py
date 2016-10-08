@@ -39,7 +39,7 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
 
         # For testing purposes, print out the plane to check values
         print(self.plane)
-       
+
 
     def zoom(self, xmin, xmax, xlen, ymin, ymax, ylen):
         self.xmin = xmin
@@ -54,8 +54,3 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
     def set_f(self, f):
         self.f = f
         self.refresh()
-
-    def julia(c, max=100):
-        def f(z): 
-            return z**2 + c
-        return f 
