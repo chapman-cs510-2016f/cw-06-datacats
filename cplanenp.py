@@ -4,7 +4,47 @@ import abscplane as ab
 import numpy as np
 import pandas as pd
 
+"""Complex Plane Creation
+This module imports from the class abscplane, and inherits the class' object
+and variables.
+This module expands on the class by creating a complex number plane,
+creating a 2 dimensional grid of complex numbers in the form of (x + y * 1j)
+where 1j is the imaginary untit, defined in mathematics as i; the square root of -1.
+The exect specifications of the grid is left to the user.
+The class as attributes of the following:
+        xmax (float) : maximum horizontal axis value
+        xmin (float) : minimum horizontal axis value
+        xlen (int)   : number of horizontal points
+        ymax (float) : maximum vertical axis value
+        ymin (float) : minimum vertical axis value
+        ylen (int)   : number of vertical points
+        plane        : stored complex plane implementation
+        f    (func)  : function displayed in the plane
+
+
+This module also has 3 aditional functions that are used to transform the 2d grid as needed.:
+    refresh : redraws the plane creation
+    zoom    : resets graph's x and y values to "zoom in/out", and redraws the graph with new perameters
+    set_f   : resets the transformation function for the graph, then redraws the graph.
+"""
+
 class ComplexPlaneNP(ab.AbsComplexPlane):
+        """Complex Plane Class: Sets the initial values for the object, as well as creates the plane.
+
+         The creation takes in the following arugments, and has default values if no value is passed through:
+
+            param1 (float) : minimum horizontal, X, axis value. Default value of -5
+            param2 (float) : maximum horizontal, X, axis value. Default value of 5
+            param3 (int)   : number of horizontal points between the x-min and x-max values. Default value of 10.
+            param4 (float) : minimum vertical, Y, axis value. Default value of -5
+            param5 (float) : maximum vertical, Y, axis value. Default value of 5
+            param6 (int)   : number of vertical points between the y-min and y-max values. Default value of 10
+            param7         : stored complex plane implementation. Defaulted as a black list, []
+            param8 (func)  : function displayed in the plane. Default function as the identity function. x:x
+
+        The initialization will also call the class function, refresh() to create the plane with the given
+        arugments.
+    """
 
     def __init__(self, xmin=-5.0, xmax=5.0, xlen=10, ymin=-5.0, ymax=5.0, ylen=10, plane= [], f=lambda x:x):
         self.xmin = xmin
@@ -16,11 +56,22 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
         self.plane = plane
         self.f = f
 
+        # calling refresh() to build the plane
         self.refresh()
 
     def refresh(self):
-        a= np.linspace(self.xmin, self.xmax, self.xlen+1)
-        b= np.linspace(self.ymin, self.ymax, self.ylen+1)
+        """
+        For every point (x + y*1j) in the plane, replace
+        the point with the value self.f(x + y*1j).
+        This function will take the set values of xmin, xmax, xlen, ymin, ymax, ylen to
+        create the plane.
+        It will also take the set value of f and apply the function upon creation of the plane,
+        using numpy and pandas to create the plane and give it labels.
+        """
+        # Plane creationg using numpy by first using linspace to get all the x and y values between their respective min and max and the points inbetween by their length values.
+        # Then uing meshgrid to combine all the points together and using the formula x + y*1j to vectorize the entire grid.
+        a = np.linspace(self.xmin, self.xmax, self.xlen+1)
+        b = np.linspace(self.ymin, self.ymax, self.ylen+1)
         y, x = np.meshgrid(b,a)
         z = x + y*1j
 
@@ -34,14 +85,29 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
         for j in range(self.ylen + 1):
             y_val.append(str(self.ymin + (j * inc_y)) + "*j")
 
+        # Using pandas Dataframe to add x and y value labels to the grid, then transposing the grid so the values are ordered to resemble the number plane.
         f = pd.DataFrame(z, x_val, y_val)
         self.plane = f.T
 
-        # For testing purposes, print out the plane to check values
+        # For testing purposes, print out the plane to check if everything works and the values are correct.
         print(self.plane)
 
 
     def zoom(self, xmin, xmax, xlen, ymin, ymax, ylen):
+        """This function zooms into the graph, given by the parameters
+        Args:
+            param1 (float) : The new value for the minimum horizontal axis
+            param2 (float) : The new value for the maximum horizontal axis
+            param3 (int)   : The new value for the horizontal points between the x-max and x-min values.
+            param4 (float) : The new value for the maximum horizontal axis
+            param5 (float) : The new value for the minimum horizontal axis
+            param6 (int)   : mThe new value for the vertical points between the y-max and y-min values.
+
+        This function takes in a user input of xmin, xmax, xlen, ymin, ymax, ylen and resets
+        the class values to the parameters.
+        The function will then 'zoom in' by recreating the graph, given the newly defined values
+        by calling the refresh() function.
+        """
         self.xmin = xmin
         self.xmax = xmax
         self.xlen = xlen
@@ -52,5 +118,12 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
         self.refresh()
 
     def set_f(self, f):
+        """This function applies a new function to be applied to the grid's values and recreates the grid
+        Args:
+            param1 (function)  : a new function to be passed onto the grid.
+
+        This function sets a new value to the class' function variable with the given parameter and then
+        recreates the grid by calling the refresh() function.
+        """
         self.f = f
         self.refresh()
