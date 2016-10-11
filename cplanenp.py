@@ -29,7 +29,7 @@ This module also has 3 aditional functions that are used to transform the 2d gri
 """
 
 class ComplexPlaneNP(ab.AbsComplexPlane):
-        """Complex Plane Class: Sets the initial values for the object, as well as creates the plane.
+    """Complex Plane Class: Sets the initial values for the object, as well as creates the plane.
 
          The creation takes in the following arugments, and has default values if no value is passed through:
 
@@ -44,7 +44,7 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
 
         The initialization will also call the class function, refresh() to create the plane with the given
         arugments.
-        """
+    """
 
     def __init__(self, xmin=-5.0, xmax=5.0, xlen=10, ymin=-5.0, ymax=5.0, ylen=10, plane= [], f=lambda x:x):
         self.xmin = xmin
