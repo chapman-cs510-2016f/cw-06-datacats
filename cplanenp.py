@@ -46,7 +46,7 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
         arugments.
     """
 
-    def __init__(self, xmin=-5.0, xmax=5.0, xlen=10, ymin=-5.0, ymax=5.0, ylen=10, plane= [], f=lambda x:x):
+    def __init__(self, xmin=-5.0, xmax=5.0, xlen=10, ymin=-5.0, ymax=5.0, ylen=10, plane= [], f=np.vectorize(lambda x:x)):
         self.xmin = xmin
         self.xmax = xmax
         self.xlen = xlen
@@ -74,6 +74,7 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
         b = np.linspace(self.ymin, self.ymax, self.ylen+1)
         y, x = np.meshgrid(b,a)
         z = x + y*1j
+        z = self.f(z)
 
         # Creating a list of each x and y value to be used in our pandas implementation for column and row names.
         x_val = []
