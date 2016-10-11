@@ -44,7 +44,7 @@ class ComplexPlaneNP(ab.AbsComplexPlane):
 
         The initialization will also call the class function, refresh() to create the plane with the given
         arugments.
-    """
+        """
 
     def __init__(self, xmin=-5.0, xmax=5.0, xlen=10, ymin=-5.0, ymax=5.0, ylen=10, plane= [], f=lambda x:x):
         self.xmin = xmin
