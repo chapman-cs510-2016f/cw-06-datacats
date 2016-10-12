@@ -32,7 +32,7 @@ Complete the following exercises, saving your solutions in the indicated files. 
 
 Analyze in this section what you found useful about this assignment in your own words. Include any lingering questions or comments that you may have.
 
-**CHANGEME**
+**We thought this assignment was great, as it gave us good practice and understanding of the power of numpy and pandas. Also it made our previous classwork a lot easier to implement. The Julia functionality took a little bit to wrap our heads around, but overall it was good to get use accustomed to the many different ways Python can code. Overall, we enjoyed using Pandas and Numpy.**
 
 ## Honor Pledge
 
